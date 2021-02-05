@@ -66,6 +66,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
         User sysUser = new User();
         sysUser.setUsername(authResult.getName());
         sysUser.setRoles((List<Role>) authResult.getAuthorities());
+        System.out.println(sysUser);
         String token = JwtUtils.generateTokenExpireInMinutes(sysUser,rsaKeyProperties.getPrivateKey(),24*60);
         response.addHeader("Authorization", "RobodToken " + token);	//将Token信息返回给用户
         try {

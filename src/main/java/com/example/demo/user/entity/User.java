@@ -1,10 +1,12 @@
 package com.example.demo.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.demo.user.mapper.RoleMapper;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -27,6 +29,9 @@ import java.util.List;
 @TableName("gs_user")
 public class User implements Serializable, UserDetails {
 
+    @Autowired
+    private RoleMapper roleMapper;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -39,6 +44,9 @@ public class User implements Serializable, UserDetails {
      */
     private String password;
 
+    /**
+     * 角色列表
+     */
     private List<Role> roles = new ArrayList<>();
 
     @JsonIgnore
